@@ -17,8 +17,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                >
+
                 @Html.ActionLink("Online Shopping Web App", "Index", "OnlineShopping", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink( "      Hello,  "+Request.Cookies["Username"].Value, "Profile", "Customer", new { area = "right" }, new { @class = "navbar-brand" })
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -37,19 +39,21 @@
                         {
                             <li>@Html.ActionLink("View Order", "Index", "Orders")</li>
                         }
-                        <li>@Html.ActionLink(Request.Cookies["Username"].Value, "Profile","Customer")</li>
+
                         <li>@Html.ActionLink("Log Out", "Logout", "AuthAuth")</li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("Signup", "SignUp", "AuthAuth")</li>
                         <li>@Html.ActionLink("Login", "Login", "AuthAuth")</li>
-                       
+
                     }
 
 
                 </ul>
             </div>
+
+            
         </div>
     </div>
 

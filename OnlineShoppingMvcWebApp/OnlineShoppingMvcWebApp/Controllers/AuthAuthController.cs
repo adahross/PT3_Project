@@ -81,6 +81,8 @@ namespace OnlineShoppingMvcWebApp.Controllers
         public ActionResult Logout()
         {
             //signout
+            HttpCookie cookie = new HttpCookie("Username", null);
+            Response.SetCookie(cookie);
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "OnlineShopping");
         }
