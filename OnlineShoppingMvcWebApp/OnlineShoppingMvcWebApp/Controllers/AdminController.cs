@@ -19,7 +19,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
 
         public ActionResult ViewCustomer()
         {
-            return RedirectToAction("Index", "Customer");
+            return RedirectToAction("Index", "Customers");
         }
 
         public ActionResult ViewBook()
@@ -29,7 +29,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
 
         public ActionResult ViewOrder()
         {
-            return RedirectToAction("Index", "Order");
+            return RedirectToAction("Index", "Orders");
         }
 
         public ActionResult CreateUser()

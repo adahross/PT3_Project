@@ -27,6 +27,10 @@ namespace OnlineShoppingMvcWebApp.Controllers
                          where x.userName == user.userName
                          where x.password == user.password
                          select x).Count();
+           var item = (from x in db.RegisteredUser
+                         where x.userName == user.userName
+                         where x.password == user.password
+                         select x).First();
 
             if (count == 0)
             {
@@ -36,9 +40,12 @@ namespace OnlineShoppingMvcWebApp.Controllers
             else
             {
                 HttpCookie cookie= new HttpCookie("Username", user.userName);
+                HttpCookie cookie1 = new HttpCookie("UserId", item.registeredUserId.ToString());
                 FormsAuthentication.SetAuthCookie(user.userName, false);
                 Response.SetCookie(cookie);
-                return RedirectToAction("Index", "OnlineShopping");
+                Response.SetCookie(cookie1);
+                return RedirectToAction("Index", "OnlineShopping");
+
             }
         }
 
@@ -52,36 +59,39 @@ namespace OnlineShoppingMvcWebApp.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult SignUp(RegisteredUser user)
+        public ActionResult SignUp([Bind(Include = "registeredUserId,userName,password,role,PhoneNo,Email")] Customer customer)
         {
             //access to db. get username and password
             MyAppDbContext db = new MyAppDbContext();
 
             int count = (from x in db.RegisteredUser
-                         where x.userName == user.userName
-                         where x.password == user.password
+                         where x.userName == customer.userName
+                         where x.password == customer.password
                          select x).Count();
 
             //check whether acc already exist
             if (count == 0)
             {
                ViewBag.errMsg = "Registration Successful. Please Login";
-               db.RegisteredUser.Add(user);
+               db.RegisteredUser.Add(customer);
                db.SaveChanges();
-                return RedirectToAction("LoginCustomer", "AuthAuth");
+                return RedirectToAction("Login", "AuthAuth");
             }
             else
             {      
                 //check whether acc already exist
                 ViewBag.errMsg = "This account already registered";
-                return View(user);
-                           }
+                return View(customer);
+               
+            }
         }
 
         public ActionResult Logout()
         {
             //signout
             HttpCookie cookie = new HttpCookie("Username", null);
+            Response.SetCookie(cookie);
+            HttpCookie cookie2 = new HttpCookie("Id", null);
             Response.SetCookie(cookie);
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "OnlineShopping");

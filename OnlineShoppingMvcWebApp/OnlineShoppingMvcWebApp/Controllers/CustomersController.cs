@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineShoppingMvcWebApp.Models;
 
-namespace OnlineShoppingMvcWebApp.Contollers
+namespace OnlineShoppingMvcWebApp.Controllers
 {
     public class CustomersController : Controller
     {
@@ -17,7 +17,14 @@ namespace OnlineShoppingMvcWebApp.Contollers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customer.ToList());
+            var result = (from x in db.RegisteredUser
+                          where x.role == "Customer"
+                          select x).ToList();
+            IEnumerable<RegisteredUser> customer = new List<Customer>();
+            customer = result;
+                      
+            
+            return View(result);
         }
 
         // GET: Customers/Details/5
@@ -27,7 +34,8 @@ namespace OnlineShoppingMvcWebApp.Contollers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customer.Find(id);
+            RegisteredUser customer = new Customer();
+            customer = db.RegisteredUser.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -46,11 +54,11 @@ namespace OnlineShoppingMvcWebApp.Contollers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerId,UserName,Password,PhoneNo,Email")] Customer customer)
+        public ActionResult Create([Bind(Include = "registeredUserId,userName,password,role,PhoneNo,Email")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Customer.Add(customer);
+                db.RegisteredUser.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +73,8 @@ namespace OnlineShoppingMvcWebApp.Contollers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customer.Find(id);
+            RegisteredUser customer = new Customer();
+            customer = db.RegisteredUser.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -78,7 +87,7 @@ namespace OnlineShoppingMvcWebApp.Contollers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,UserName,Password,PhoneNo,Email")] Customer customer)
+        public ActionResult Edit([Bind(Include = "registeredUserId,userName,password,role,PhoneNo,Email")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +105,8 @@ namespace OnlineShoppingMvcWebApp.Contollers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customer.Find(id);
+            RegisteredUser customer = new Customer();
+            customer = db.RegisteredUser.Find(id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -109,8 +119,10 @@ namespace OnlineShoppingMvcWebApp.Contollers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customer customer = db.Customer.Find(id);
-            db.Customer.Remove(customer);
+            RegisteredUser customer = new Customer();
+
+            customer= db.RegisteredUser.Find(id);
+            db.RegisteredUser.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
