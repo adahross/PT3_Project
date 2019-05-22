@@ -24,7 +24,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
             customer = result;
                       
             
-            return View(result);
+            return View(customer);
         }
 
         // GET: Customers/Details/5

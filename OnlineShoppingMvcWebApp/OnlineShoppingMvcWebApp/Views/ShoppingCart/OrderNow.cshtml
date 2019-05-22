@@ -1,0 +1,39 @@
+﻿@using OnlineShoppingMvcWebApp.Models;
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<h2>Index</h2>
+
+<table border="1">
+    <tr>
+        <th>Book ID</th>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Price(RM)</th>
+        <th>Quantity</th>
+        <th>Total Price(RM)</th>
+    </tr>
+
+
+    @foreach (var cart in (List<Cart>)Session["Cart"])
+    {
+        <tr>
+            <td>@cart.Book.BookId</td>
+            <td>@cart.Book.Title</td>
+            <td>@cart.Book.ISBN</td>
+            <td>@cart.Book.Price</td>
+            <td>@cart.Quantity</td>
+            <td>@(String.Format("{0:N0}",cart.Book.Price*cart.Quantity))</td>
+            <td>
+                @Html.ActionLink("Delete", "Delete","ShoppingCart", new { id=cart.Book.BookId},
+               new { onclick = "return confirm ('Are you sure you want to delete this? ');" })
+
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+  @Html.ActionLink("Check Out", "CheckOut","ShoppingCart", new { onclick = "return confirm ('Are you sure you want to check out? ');" })

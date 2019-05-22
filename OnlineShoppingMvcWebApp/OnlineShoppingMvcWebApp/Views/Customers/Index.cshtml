@@ -1,5 +1,5 @@
-﻿@model IEnumerable<OnlineShoppingMvcWebApp.Models.RegisteredUser>
-
+﻿
+@model IEnumerable<OnlineShoppingMvcWebApp.Models.Customer>
 @{
     ViewBag.Title = "Index";
 }
@@ -20,10 +20,21 @@
         <th>
             @Html.DisplayNameFor(model => model.role)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipAddress)
+        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.userName)
@@ -35,11 +46,20 @@
             @Html.DisplayFor(modelItem => item.role)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.registeredUserId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.registeredUserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.registeredUserId })
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNo)
+        </td>
+        <td>
+            @item.ShipAddress.Street, @item.ShipAddress.Road, @item.ShipAddress.PostCode, @item.ShipAddress.City, @item.ShipAddress.Country
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.registeredUserId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.registeredUserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.registeredUserId })
         </td>
     </tr>
-}
+    }
 
 </table>

@@ -9,6 +9,7 @@ namespace OnlineShoppingMvcWebApp.Models
     {
 
         public int OrderId{ get; set; }
+        public List<Cart> Carts { get; set; }
         public  String PaymentType { get; set; }
         public double TotalPrice { get; set; }
         public double ShipFee { get; set; }

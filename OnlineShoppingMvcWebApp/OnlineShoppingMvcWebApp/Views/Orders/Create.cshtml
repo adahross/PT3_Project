@@ -1,4 +1,5 @@
-﻿@model OnlineShoppingMvcWebApp.Models.Order
+﻿@using OnlineShoppingMvcWebApp.Models;
+@model OnlineShoppingMvcWebApp.Models.Order
 
 @{
     ViewBag.Title = "Create";
@@ -6,10 +7,35 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+<table border="1">
+    <tr>
+        <th>Book ID</th>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Price(RM)</th>
+        <th>Quantity</th>
+        <th>Total Price(RM)</th>
+    </tr>
+
+
+    @foreach (var cart in (List<Cart>)Session["Cart"])
+    {
+        <tr>
+            <td>@cart.Book.BookId</td>
+            <td>@cart.Book.Title</td>
+            <td>@cart.Book.ISBN</td>
+            <td>@cart.Book.Price</td>
+            <td>@cart.Quantity</td>
+            <td>@(String.Format("{0:N0}", cart.Book.Price * cart.Quantity))</td>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Order</h4>
         <hr />

@@ -362,3 +362,4 @@ C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\On
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.csproj.CopyComplete
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.dll
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.pdb
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.Second.resources
