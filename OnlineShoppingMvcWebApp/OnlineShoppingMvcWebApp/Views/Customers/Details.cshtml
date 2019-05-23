@@ -49,6 +49,13 @@
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipAddress.Street),  @Html.DisplayFor(model => model.ShipAddress.Road), <br> @Html.DisplayFor(model => model.ShipAddress.PostCode), @Html.DisplayFor(model => model.ShipAddress.City), @Html.DisplayFor(model => model.ShipAddress.Country)
+        </dd>
 
     </dl>
 </div>

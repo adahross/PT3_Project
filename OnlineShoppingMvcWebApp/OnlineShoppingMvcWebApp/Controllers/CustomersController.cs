@@ -17,14 +17,12 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            var result = (from x in db.RegisteredUser
+             var result = (from x in db.Customer
                           where x.role == "Customer"
                           select x).ToList();
-            IEnumerable<Customer> customer = new List<Customer>();
-            customer = result;
-                      
+                                
             
-            return View(customer);
+            return View(result);
         }
 
         // GET: Customers/Details/5
@@ -34,8 +32,18 @@ namespace OnlineShoppingMvcWebApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RegisteredUser customer = new Customer();
-            customer = db.RegisteredUser.Find(id);
+            Customer customer = new Customer();
+            customer = db.Customer.Find(id);
+            int adID = (from x in db.Customer
+                        where x.registeredUserId == id
+                           select x.ShipAddress.AddressID).First();
+
+            var address = (from x in db.Address
+                           where x.AddressID == adID
+                           select x).First();
+
+            customer.ShipAddress = address;
+
             if (customer == null)
             {
                 return HttpNotFound();
@@ -92,6 +100,31 @@ namespace OnlineShoppingMvcWebApp.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(customer).State = EntityState.Modified;
+                int adID = (from x in db.Customer
+                            where x.registeredUserId == customer.registeredUserId
+                            select x.ShipAddress.AddressID).First();
+
+
+
+                Address newAdd = new Address
+                {
+                    AddressID = customer.ShipAddress.AddressID,
+                    Street= customer.ShipAddress.Street,
+                    Road=customer.ShipAddress.Road,
+                    City=customer.ShipAddress.City,
+                    PostCode=customer.ShipAddress.PostCode,
+                    Country =  customer.ShipAddress.Country
+
+
+                };
+
+                
+                if (customer.ShipAddress.AddressID == newAdd.AddressID)
+                {
+                    db.Entry(newAdd).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+               
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

@@ -52,7 +52,7 @@
             @Html.DisplayFor(modelItem => item.PhoneNo)
         </td>
         <td>
-            @item.ShipAddress.Street, @item.ShipAddress.Road, @item.ShipAddress.PostCode, @item.ShipAddress.City, @item.ShipAddress.Country
+            @Html.DisplayFor(modelItem => item.ShipAddress.AddressID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.registeredUserId }) |

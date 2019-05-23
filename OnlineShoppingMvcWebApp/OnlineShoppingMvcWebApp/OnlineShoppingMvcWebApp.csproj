@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201905221046040_Second.Designer.cs">
       <DependentUpon>201905221046040_Second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905232012419_third.cs" />
+    <Compile Include="Migrations\201905232012419_third.Designer.cs">
+      <DependentUpon>201905232012419_third.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -253,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905221046040_Second.resx">
       <DependentUpon>201905221046040_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905232012419_third.resx">
+      <DependentUpon>201905232012419_third.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

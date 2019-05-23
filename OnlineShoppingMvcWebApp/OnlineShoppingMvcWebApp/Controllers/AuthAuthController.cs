@@ -55,11 +55,15 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // GET: AuthAuth
         public ActionResult SignUp()
         {
-            return View();
+            Customer customer = new Customer()
+            {
+                role = "Customer"
+            };
+            return View(customer);
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult SignUp([Bind(Include = "registeredUserId,userName,password,role,PhoneNo,Email")] Customer customer)
+        public ActionResult SignUp([Bind(Include = "registeredUserId,userName,password,role,PhoneNo,Email,ShipAddress")] Customer customer)
         {
             //access to db. get username and password
             MyAppDbContext db = new MyAppDbContext();
@@ -73,6 +77,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
             if (count == 0)
             {
                ViewBag.errMsg = "Registration Successful. Please Login";
+                db.Address.Add(customer.ShipAddress);
                db.RegisteredUser.Add(customer);
                db.SaveChanges();
                 return RedirectToAction("Login", "AuthAuth");

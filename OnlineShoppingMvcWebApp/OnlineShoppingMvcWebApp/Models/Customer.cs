@@ -12,5 +12,15 @@ namespace OnlineShoppingMvcWebApp.Models
         public string Email { get; set; }
         public Address ShipAddress { get; set; }
 
+        public string GetUsername() {
+
+            return userName;
+        }
+        public string GetPassword()
+        {
+
+            return password;
+        }
+
     }
 }

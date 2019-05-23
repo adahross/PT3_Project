@@ -8,7 +8,7 @@ namespace OnlineShoppingMvcWebApp.Models
 {
     public class Address
     {
-        [Key]
+        public int AddressID { get; set; }
         public string Street { get; set; }
         public string Road { get; set; }
         public string City { get; set; }
