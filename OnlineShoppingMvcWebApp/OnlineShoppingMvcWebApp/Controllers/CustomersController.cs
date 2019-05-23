@@ -20,7 +20,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
             var result = (from x in db.RegisteredUser
                           where x.role == "Customer"
                           select x).ToList();
-            IEnumerable<RegisteredUser> customer = new List<Customer>();
+            IEnumerable<Customer> customer = new List<Customer>();
             customer = result;
                       
             
