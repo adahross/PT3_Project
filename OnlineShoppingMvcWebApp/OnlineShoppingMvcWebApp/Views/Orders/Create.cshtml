@@ -6,7 +6,7 @@
 }
 
 <h2>Create</h2>
-
+@{ var totprice=0.0;}
 <table border="1">
     <tr>
         <th>Book ID</th>
@@ -16,8 +16,7 @@
         <th>Quantity</th>
         <th>Total Price(RM)</th>
     </tr>
-
-
+    
     @foreach (var cart in (List<Cart>)Session["Cart"])
     {
         <tr>
@@ -26,7 +25,9 @@
             <td>@cart.Book.ISBN</td>
             <td>@cart.Book.Price</td>
             <td>@cart.Quantity</td>
-            <td>@(String.Format("{0:N0}", cart.Book.Price * cart.Quantity))</td>
+            <td>@(totprice= cart.Quantity * cart.Book.Price)</td>
+            @{Model.TotalPrice += totprice;
+              }
         </tr>
     }
 
@@ -36,40 +37,43 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Order</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.PaymentType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PaymentType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShipFee, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ShipFee, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShipFee, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+<div class="form-horizontal">
+    <h4>Order</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.PaymentType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.PaymentType, new SelectList(new string[] { "Credit Card", "Debit", "Online Payment" }, "Credit Card"), htmlAttributes: new { @class = "form-control" })
         </div>
     </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShipFee, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ShipFee, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.ShipFee, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @{Model.TotalPrice += Model.ShipFee;}
+            @Html.ValidationMessageFor(model => model.TotalPrice,"", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Check Out" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

@@ -34,7 +34,7 @@
                 <div class="list-group">
                     <a href="~/OnlineShopping/Index" class="list-group-item">Administration</a>
                     <a  href="~/OnlineShopping/Index2" class="list-group-item active">C#</a>
-                    <a href="~/OnlineShopping/Index" class="list-group-item">Arduino</a>
+                    <a href="~/OnlineShopping/Index3" class="list-group-item">Arduino</a>
                 </div>
 
             </div>
@@ -53,13 +53,13 @@
                                     <a href="#"><img class="card-img-top" src="@item.CoverPage" alt="@item.Title"></a>
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            <a href="#">@item.Title</a>
+                                            <a href="~/Books/Details/@item.BookId">@item.Title</a>
                                         </h4>
-                                        <h5>@item.Price</h5>
-                                        <h6>@item.Author</h6>
-                                        <h6>@item.ISBN</h6>
-                                        <h6>@item.Publisher</h6>
-                                        <h6>@item.Category</h6>
+                                        <h5>RM @item.Price</h5>
+                                        <h6>Author : @item.Author</h6>
+                                        <h6>ISBN   : @item.ISBN</h6>
+                                        <h6>Publisher : @item.Publisher</h6>
+                                        <h6>Category  : @item.Category</h6>
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

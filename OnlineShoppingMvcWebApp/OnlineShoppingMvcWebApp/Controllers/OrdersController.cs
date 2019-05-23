@@ -37,9 +37,16 @@ namespace OnlineShoppingMvcWebApp.Controllers
 
         // GET: Orders/Create
         public ActionResult Create()
+
         {
-            
-            return View();
+            Order order = new Order()
+            {
+
+                TotalPrice = 0.00,
+                ShipFee = 10.00
+            };
+
+            return View(order);
         }
 
         // POST: Orders/Create
@@ -49,10 +56,12 @@ namespace OnlineShoppingMvcWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OrderId,PaymentType,TotalPrice,ShipFee")] Order order)
         {
+           
             if (ModelState.IsValid)
             {
                 db.Order.Add(order);
                 db.SaveChanges();
+                Session["Cart"]=null;
                 return RedirectToAction("Index");
             }
 

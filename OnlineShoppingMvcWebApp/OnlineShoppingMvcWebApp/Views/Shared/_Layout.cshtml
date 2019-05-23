@@ -15,7 +15,7 @@
             <a class="navbar-brand" href="~/OnlineShopping/Index">Online Shopping Web App</a>
             @if (User.Identity.IsAuthenticated)
             {
-                <a class="navbar-brand" href="~/Customers/Edit/@Request.Cookies["UserId"].Value">Hello,  @Request.Cookies["Username"].Value</a>
+                <a class="navbar-brand" href="~/Customers/Details/@Request.Cookies["UserId"].Value">Hello,  @Request.Cookies["Username"].Value</a>
             }
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
