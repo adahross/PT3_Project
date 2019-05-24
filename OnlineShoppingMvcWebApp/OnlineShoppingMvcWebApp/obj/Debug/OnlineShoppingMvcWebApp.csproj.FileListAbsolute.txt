@@ -364,3 +364,8 @@ C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\On
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.pdb
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.Second.resources
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.third.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.UpdateModel.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.updateRegister.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.Forth.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.fifth.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.sixth.resources

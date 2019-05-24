@@ -110,7 +110,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
                 {
                     AddressID = customer.ShipAddress.AddressID,
                     Street= customer.ShipAddress.Street,
-                    Road=customer.ShipAddress.Road,
+                    State=customer.ShipAddress.State,
                     City=customer.ShipAddress.City,
                     PostCode=customer.ShipAddress.PostCode,
                     Country =  customer.ShipAddress.Country
@@ -126,7 +126,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
                 }
                
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", customer.registeredUserId);
             }
             return View(customer);
         }

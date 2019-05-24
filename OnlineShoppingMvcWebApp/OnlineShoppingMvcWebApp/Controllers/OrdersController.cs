@@ -7,18 +7,38 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using OnlineShoppingMvcWebApp.Models;
+using OnlineShoppingMvcWebApp.ViewModels;
 
 namespace OnlineShoppingMvcWebApp.Controllers
 {
     public class OrdersController : Controller
     {
+
+        private string history = "OldCart";
         private MyAppDbContext db = new MyAppDbContext();
+        static CustomerOrder vm = new CustomerOrder
+        {
+            
+            CustomerOrders   = new List<CustomerOrder>()
+        };
 
         // GET: Orders
         public ActionResult Index()
         {
+           
             return View(db.Order.ToList());
         }
+
+        public ActionResult OrderCustomer(int ? id)
+        {
+            var result = (from x in db.Order
+                          where x.Customer.registeredUserId == id
+                          select x).ToList();
+            
+
+            return View(result);
+        }
+        
 
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
@@ -32,6 +52,11 @@ namespace OnlineShoppingMvcWebApp.Controllers
             {
                 return HttpNotFound();
             }
+
+            var item = (from x in db.Order
+                        where x.OrderId == id
+                        select x.Carts);
+            Session[history] = item;
             return View(order);
         }
 
@@ -43,7 +68,8 @@ namespace OnlineShoppingMvcWebApp.Controllers
             {
 
                 TotalPrice = 0.00,
-                ShipFee = 10.00
+                ShipFee = 10.00,
+               
             };
 
             return View(order);
@@ -54,15 +80,23 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderId,PaymentType,TotalPrice,ShipFee")] Order order)
+        public ActionResult Create([Bind(Include="OrderId, PaymentType, TotalPrice,ShipFee, Date")] Order order)
         {
            
             if (ModelState.IsValid)
             {
+              var id = Int32.Parse(Request.Cookies["UserId"].Value);
+                Customer cust = (from x in db.Customer
+                                 where x.registeredUserId == id
+                                 select x).Single();
+                     order.Customer = cust;
+                List<Cart> IsCart = (List<Cart>)Session["Cart"];
+                order.Carts = IsCart;
+                order.Date = DateTime.Now;
                 db.Order.Add(order);
                 db.SaveChanges();
                 Session["Cart"]=null;
-                return RedirectToAction("Index");
+                return RedirectToAction("OrderCustomer/"+Request.Cookies["UserId"].Value);
             }
 
             return View(order);

@@ -48,28 +48,28 @@
                     {
                         if (item.Category.Equals("Administration"))
                         {
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <div class="card h-100">
-                            <a href="#"><img class="card-img-top" src="@item.CoverPage" alt="@item.Title"></a>
-                            <div class="card-body">
-                                <h4 class="card-title">
-                                    <a href="~/Books/Details/@item.BookId">@item.Title</a>
-                                </h4>
-                                <h5>RM @item.Price</h5>
-                                <h6>Author : @item.Author</h6>
-                                <h6>ISBN   : @item.ISBN</h6>
-                                <h6>Publisher : @item.Publisher</h6>
-                                <h6>Category  : @item.Category</h6>
-                            </div>
-                            <div class="card-footer">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <a href="#"><img class="card-img-top" src="@item.CoverPage" alt="@item.Title"></a>
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="~/Books/Details/@item.BookId">@item.Title</a>
+                                        </h4>
+                                        <h5>RM @item.Price</h5>
+                                        <h6>Author : @item.Author</h6>
+                                        <h6>ISBN   : @item.ISBN</h6>
+                                        <h6>Publisher : @item.Publisher</h6>
+                                        <h6>Category  : @item.Category</h6>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
 
+                                    </div>
+                                    <div class="card-footer">
+                                        <button>@Html.ActionLink("Buy Now", "OrderNow", "ShoppingCart", new { id = item.BookId }, null)</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-footer">
-                                <button>@Html.ActionLink("Buy Now", "OrderNow", "ShoppingCart", new {id=item.BookId }, null)</button>
-                            </div>
-                        </div>
-                    </div>
                         }
                     }
                 </div>
@@ -91,7 +91,8 @@
     </footer>
 
 
-
+    <script src="~/Content/jquery.min.js"></script>
+    <script src="~/Content/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -8,11 +8,27 @@ namespace OnlineShoppingMvcWebApp.Models
 {
     public class Address
     {
+        [Key]
         public int AddressID { get; set; }
+
+        [Required (ErrorMessage ="Cannot left blank")]
+        [Display(Prompt = "Please fill in")]
         public string Street { get; set; }
-        public string Road { get; set; }
+
+        [Required(ErrorMessage = "Cannot left blank")]
+        [Display(Prompt = "Please fill in")]
+        public string State { get; set; }
+
+        [Required(ErrorMessage = "Cannot left blank")]
+        [Display(Prompt = "Please fill in")]
         public string City { get; set; }
+
+        [Required(ErrorMessage = "Cannot left blank")]
+        [Display(Prompt = "Please fill in")]
         public string Country { get; set; }
+
+        [Required (ErrorMessage ="Cannot left blank")]
+        [Display(Prompt = "Please fill in")]
         public string PostCode { get; set; }
     }
 }

@@ -43,7 +43,7 @@
                         }
                         if (User.IsInRole("Customer"))
                         {
-                            <li class="nav-item"><a class="nav-link" href="~/Orders/Index">View Order</a></li>
+                            <li class="nav-item"><a class="nav-link" href="~/Orders/OrderCustomer/@Request.Cookies["UserId"].Value">View Order</a></li>
                             <li class="nav-item"><a class="nav-link" href="~/Customers/Edit/@Request.Cookies["UserId"].Value">Manage Profile</a></li>
                         }
 

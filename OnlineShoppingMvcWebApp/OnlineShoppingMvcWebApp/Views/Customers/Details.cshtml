@@ -11,12 +11,20 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.userName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.userName)
         </dd>
+
 
         <dt>
             @Html.DisplayNameFor(model => model.password)
@@ -54,12 +62,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ShipAddress.Street),  @Html.DisplayFor(model => model.ShipAddress.Road), <br> @Html.DisplayFor(model => model.ShipAddress.PostCode), @Html.DisplayFor(model => model.ShipAddress.City), @Html.DisplayFor(model => model.ShipAddress.Country)
+            @Html.DisplayFor(model => model.ShipAddress.Street),  @Html.DisplayFor(model => model.ShipAddress.State), <br> @Html.DisplayFor(model => model.ShipAddress.PostCode), @Html.DisplayFor(model => model.ShipAddress.City), @Html.DisplayFor(model => model.ShipAddress.Country)
         </dd>
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.registeredUserId }) |
-    @Html.ActionLink("Back to List", "Index")
+
 </p>

@@ -27,10 +27,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
                          where x.userName == user.userName
                          where x.password == user.password
                          select x).Count();
-           var item = (from x in db.RegisteredUser
-                         where x.userName == user.userName
-                         where x.password == user.password
-                         select x).First();
+   
 
             if (count == 0)
             {
@@ -39,6 +36,10 @@ namespace OnlineShoppingMvcWebApp.Controllers
             }
             else
             {
+                var item = (from x in db.RegisteredUser
+                            where x.userName == user.userName
+                            where x.password == user.password
+                            select x).First();
                 HttpCookie cookie= new HttpCookie("Username", user.userName);
                 HttpCookie cookie1 = new HttpCookie("UserId", item.registeredUserId.ToString());
                 FormsAuthentication.SetAuthCookie(user.userName, false);
@@ -63,7 +64,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult SignUp([Bind(Include = "registeredUserId,userName,password,role,PhoneNo,Email,ShipAddress")] Customer customer)
+        public ActionResult SignUp([Bind(Include = "registeredUserId,fullName,userName,password,role,PhoneNo,Email,ShipAddress")] Customer customer)
         {
             //access to db. get username and password
             MyAppDbContext db = new MyAppDbContext();

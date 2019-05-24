@@ -188,6 +188,26 @@
     <Compile Include="Migrations\201905232012419_third.Designer.cs">
       <DependentUpon>201905232012419_third.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905241338443_UpdateModel.cs" />
+    <Compile Include="Migrations\201905241338443_UpdateModel.Designer.cs">
+      <DependentUpon>201905241338443_UpdateModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905241413315_updateRegister.cs" />
+    <Compile Include="Migrations\201905241413315_updateRegister.Designer.cs">
+      <DependentUpon>201905241413315_updateRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905241558165_Forth.cs" />
+    <Compile Include="Migrations\201905241558165_Forth.Designer.cs">
+      <DependentUpon>201905241558165_Forth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905241627191_fifth.cs" />
+    <Compile Include="Migrations\201905241627191_fifth.Designer.cs">
+      <DependentUpon>201905241627191_fifth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905241733565_sixth.cs" />
+    <Compile Include="Migrations\201905241733565_sixth.Designer.cs">
+      <DependentUpon>201905241733565_sixth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -198,7 +218,7 @@
     <Compile Include="Models\RegisteredUser.cs" />
     <Compile Include="MyRoleManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ShoppingCart.cs" />
+    <Compile Include="ViewModels\CustomerOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -215,7 +235,6 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\AuthAuth\Login.cshtml" />
     <Content Include="Views\AuthAuth\SignUp.cshtml" />
-    <Content Include="Views\AuthAuth\LoginCustomer.cshtml" />
     <Content Include="Views\Admin\ViewStaff.cshtml" />
     <Content Include="Views\Admin\ViewBook.cshtml" />
     <Content Include="Views\Admin\ViewOrder.cshtml" />
@@ -239,6 +258,7 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\ShoppingCart\OrderNow.cshtml" />
     <Content Include="Views\OnlineShopping\Index3.cshtml" />
+    <Content Include="Views\Orders\OrderCustomer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -248,8 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Books\Images\" />
-    <Folder Include="Views\ShipmentAgent\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905191201017_Create.resx">
@@ -260,6 +279,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905232012419_third.resx">
       <DependentUpon>201905232012419_third.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905241338443_UpdateModel.resx">
+      <DependentUpon>201905241338443_UpdateModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905241413315_updateRegister.resx">
+      <DependentUpon>201905241413315_updateRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905241558165_Forth.resx">
+      <DependentUpon>201905241558165_Forth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905241627191_fifth.resx">
+      <DependentUpon>201905241627191_fifth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905241733565_sixth.resx">
+      <DependentUpon>201905241733565_sixth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

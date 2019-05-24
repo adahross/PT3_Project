@@ -16,6 +16,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.registeredUserId)
     @Html.HiddenFor(model => model.ShipAddress.AddressID)
+    @Html.HiddenFor(model => model.role)
     <div class="form-group">
         @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -32,13 +33,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.role, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
-        </div>
-    </div>
+
 
     <div class="form-group">
         @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -64,10 +59,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ShipAddress.Road, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ShipAddress.State, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ShipAddress.Road, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ShipAddress.Road, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.ShipAddress.State, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipAddress.State, "", new { @class = "text-danger" })
         </div>
     </div>
 

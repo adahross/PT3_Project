@@ -56,7 +56,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
                 HttpPostedFileBase poImgFile = Request.Files["CoverPage"];
 
 
-                string path = @"\Images"+ poImgFile.FileName;
+                string path = @"\Images/"+ poImgFile.FileName;
                     poImgFile.SaveAs(Server.MapPath("~") + @"\" + path);
                     book.CoverPage = path;
 
@@ -88,8 +88,13 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookId,Title,Publisher,Year,CoverPage,ISBN,Author,Category,Price")] Book book)
+        public ActionResult Edit([Bind(Include = "BookId,Title,Publisher,Year,ISBN,Author,Category,Price", Exclude = "CoverPage")] Book book)
         {
+            HttpPostedFileBase poImgFile = Request.Files["CoverPage"];
+            string path = @"\Images/" + poImgFile.FileName;
+            poImgFile.SaveAs(Server.MapPath("~") + @"\" + path);
+            book.CoverPage = path;
+
             if (ModelState.IsValid)
             {
                 db.Entry(book).State = EntityState.Modified;
