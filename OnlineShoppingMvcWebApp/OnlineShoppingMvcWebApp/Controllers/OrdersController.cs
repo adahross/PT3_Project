@@ -52,15 +52,12 @@ namespace OnlineShoppingMvcWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            Customer customer = (from o in db.Order
-                                 join c in db.Customer
-                                 on o.OrderCustomerid equals c.registeredUserId
-                                 select c).First();
-
-            Address address = (from c in db.Customer
-                               join a in db.Address
-                               on c.ShipAddressID equals a.AddressID
-                               select a).First();
+            Customer customer = (from c in db.Customer
+                                where c.registeredUserId == order.OrderCustomerid
+                                select c).FirstOrDefault();
+            Address address = (from a in db.Address
+                              where a.AddressID==customer.ShipAddressID
+                               select a).FirstOrDefault();
             order.Customer.ShipAddress = address;
             order.Customer = customer;
 

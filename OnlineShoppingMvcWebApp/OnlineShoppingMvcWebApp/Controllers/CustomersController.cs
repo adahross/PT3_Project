@@ -68,7 +68,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "registeredUserId,fullName,userName,password,role,PhoneNo,Email")] Customer customer)
+        public ActionResult Create([Bind(Include = "registeredUserId,fullName,userName,password,role,PhoneNo,Email,ShipAddress")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -101,11 +101,11 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "registeredUserId,fullName,userName,password,role,PhoneNo,Email")] Customer customer)
+        public ActionResult Edit([Bind(Include = "registeredUserId,fullName,userName,password,role,PhoneNo,Email,ShipAddress")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+
                 int adID = (from x in db.Customer
                             where x.registeredUserId == customer.registeredUserId
                             select x.ShipAddress.AddressID).First();
@@ -115,26 +115,23 @@ namespace OnlineShoppingMvcWebApp.Controllers
                 Address newAdd = new Address
                 {
                     AddressID = customer.ShipAddress.AddressID,
-                    Street= customer.ShipAddress.Street,
-                    State=customer.ShipAddress.State,
-                    City=customer.ShipAddress.City,
-                    PostCode=customer.ShipAddress.PostCode,
-                    Country =  customer.ShipAddress.Country
+                    Street = customer.ShipAddress.Street,
+                    State = customer.ShipAddress.State,
+                    City = customer.ShipAddress.City,
+                    PostCode = customer.ShipAddress.PostCode,
+                    Country = customer.ShipAddress.Country
 
 
                 };
-
-                
-                if (customer.ShipAddress.AddressID == newAdd.AddressID)
-                {
-                    db.Entry(newAdd).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-               
+                customer.ShipAddress = newAdd;
+                db.Entry(customer.ShipAddress).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details", customer.registeredUserId);
             }
-            return View(customer);
+            else
+                return View(customer);
+           
         }
 
         // GET: Customers/Delete/5

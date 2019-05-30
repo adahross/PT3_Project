@@ -19,13 +19,13 @@ namespace OnlineShoppingMvcWebApp.Models
 
         [Required(ErrorMessage = "Cannot left blank")]
         [Display(Name = "User Name", Prompt = "User Name")]
-        [StringLength(15, ErrorMessage = "Password atleast 5 characters, MinimumLength = 5")]
+        [StringLength(15, ErrorMessage = "Username atleast 5 characters",MinimumLength =5)]
         public string userName { get; set; }
 
 
         [Required(ErrorMessage = "Cannot left blank")]
         [Display(Name = "Password", Prompt = "Password")]
-        [StringLength(15, ErrorMessage = "Password atleast 3 characters, MinimumLength = 3")]
+        [StringLength(15, ErrorMessage = "Password atleast 5 characters",MinimumLength =5)]
         [DataType(DataType.Password)]
         public string password { get; set; }
 

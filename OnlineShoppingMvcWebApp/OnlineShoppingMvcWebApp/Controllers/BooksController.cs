@@ -20,7 +20,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
         private MyAppDbContext db = new MyAppDbContext();
 
         // GET: Books
-        public ActionResult IndexBooks()
+        public ActionResult IndexBook()
         {
             return View(db.Book.ToList());
         }
@@ -86,7 +86,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
                 {
                     db.Book.Add(book);
                     db.SaveChanges();
-                    return RedirectToAction("IndexBooks");
+                    return RedirectToAction("IndexBook");
                 }
 
                 else {
