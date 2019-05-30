@@ -1,16 +1,19 @@
 ﻿
 @model IEnumerable<OnlineShoppingMvcWebApp.Models.Customer>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Customer List";
 }
 
-<h2>Index</h2>
+<h2>Customer List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Customer", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fullName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.userName)
         </th>

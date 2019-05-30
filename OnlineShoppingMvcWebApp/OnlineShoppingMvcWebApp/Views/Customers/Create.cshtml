@@ -1,23 +1,26 @@
 ﻿@model OnlineShoppingMvcWebApp.Models.Customer
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Customer";
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
 <div class="form-horizontal">
     <h4>Customer</h4>
     <hr />
+
+
+    @Html.Hidden(Model.role)
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.fullName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.fullName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.fullName, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.fullName, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.fullName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -25,7 +28,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.userName, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -33,7 +36,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.password, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -41,7 +44,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.role, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.role, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.role, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.role, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -49,7 +52,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.PhoneNo, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -57,14 +60,16 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.Email, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
 
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
+            <input type="reset" value="Reset" class="btn btn-default" />
         </div>
     </div>
 </div>

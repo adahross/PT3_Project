@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcBreadCrumbs;
 using OnlineShoppingMvcWebApp.Models;
 
 namespace OnlineShoppingMvcWebApp.Controllers
 {
+    [BreadCrumb]
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
@@ -24,7 +26,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
 
         public ActionResult ViewBook()
         {
-            return RedirectToAction("Index", "Books");
+            return RedirectToAction("IndexBooks", "Books");
         }
 
         public ActionResult ViewOrder()

@@ -1,13 +1,13 @@
 ﻿@model OnlineShoppingMvcWebApp.Models.Book
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Book Information";
 }
 
-<h2>Details</h2>
+<h2>Book Information - Customer</h2>
 
 <div>
-    <h4>Book</h4>
+  
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            <img src="@Url.Content(Model.CoverPage)" width="200" height="250"/>
+            <img src="@Url.Content(Model.CoverPage)" width="200" height="250" />
         </dd>
 
         <dt>
@@ -74,9 +74,9 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
 
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button>@Html.ActionLink("Buy Now", "OrderNow", "ShoppingCart", new { id = Model.BookId }, null)</button>
 </p>

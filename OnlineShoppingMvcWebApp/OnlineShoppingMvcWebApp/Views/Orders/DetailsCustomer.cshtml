@@ -1,0 +1,69 @@
+﻿@model OnlineShoppingMvcWebApp.Models.Order
+
+@{
+    ViewBag.Title = "Customer Order Details";
+}
+
+<h2>Customer- View Details</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.fullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.fullName)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.ShipAddress)
+        </dt>
+
+        <dd>
+            @{ var Address = Model.Customer.ShipAddress.Street + ", " + Model.Customer.ShipAddress.PostCode + ", " + Model.Customer.ShipAddress.City + ", "
+                        + Model.Customer.ShipAddress.State + ", " + Model.Customer.ShipAddress.Country; }
+
+            @Address
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+</p>

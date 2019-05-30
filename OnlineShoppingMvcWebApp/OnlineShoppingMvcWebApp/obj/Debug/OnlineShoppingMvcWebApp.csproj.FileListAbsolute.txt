@@ -369,3 +369,9 @@ C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\On
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.Forth.resources
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.fifth.resources
 C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.sixth.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.seven.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.nine.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\bin\MvcBreadCrumbs.dll
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\bin\MvcBreadCrumbs.pdb
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.eleven.resources
+C:\Users\USER\DEGREE\DEGREE 1819\Sem 2\PT\PT3_Project\OnlineShoppingMvcWebApp\OnlineShoppingMvcWebApp\obj\Debug\OnlineShoppingMvcWebApp.Migrations.latesttt.resources

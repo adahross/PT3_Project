@@ -1,7 +1,7 @@
 ﻿@model OnlineShoppingMvcWebApp.Models.Customer
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Sign Up";
 }
 
 <h2>Create</h2>
@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Customer</h4>
+    <h4 class="text-center">Sign Up Form</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @(Model.role = "Customer")
@@ -19,8 +19,8 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.fullName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.fullName, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.fullName, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.fullName, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.fullName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -28,16 +28,16 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.userName, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.password, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -45,16 +45,16 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.PhoneNo, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.Email, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -62,40 +62,42 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.ShipAddress.Street, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShipAddress.Street, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.ShipAddress.Street, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.ShipAddress.Street, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.ShipAddress.Street, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.ShipAddress.State, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShipAddress.State, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ShipAddress.State, "", new { @class = "text-danger" })
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.ShipAddress.State, new SelectList(new string[] {"Johor", "Melaka" , "Negeri Sembilan", "W.P.Kuala Lumpur", "Selangor", "Pahang", "Terengganu",
+                                                                                            "Kelantan", "Perlis" , "Kedah", "Pulau  Pinang", "Perak", "Sabah", "W.P.Labuan",
+                                                                                            "Sarawak"},
+                                                                                            "Melaka"), htmlAttributes: new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.ShipAddress.City, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShipAddress.City, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.ShipAddress.City, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.ShipAddress.City, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.ShipAddress.City, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.ShipAddress.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShipAddress.Country, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.ShipAddress.Country, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.ShipAddress.Country, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.ShipAddress.Country, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.ShipAddress.PostCode, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ShipAddress.PostCode, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-4">
+            @Html.EditorFor(model => model.ShipAddress.PostCode, new { htmlAttributes = new { @class = "form-control", @placeholder = ModelMetadata.FromLambdaExpression(m => m.ShipAddress.PostCode, ViewData).Watermark } })
             @Html.ValidationMessageFor(model => model.ShipAddress.PostCode, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -106,11 +108,8 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
+            <input type="reset" value="Reset" class="btn btn-default" />
         </div>
     </div>
 </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

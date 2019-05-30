@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MvcBreadCrumbs;
 using OnlineShoppingMvcWebApp.Models;
 
 namespace OnlineShoppingMvcWebApp.Controllers
 {
+    [BreadCrumb]
     public class ShoppingCartController : Controller
     {
         MyAppDbContext db = new MyAppDbContext();
@@ -60,6 +62,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
 
         public int isExist(int? id) {
             List<Cart> IsCart = (List<Cart>)Session[strCart];
+            
             for(int i=0;i<IsCart.Count; i++)
             {
                 if (IsCart[i].Book.BookId == id) return i;

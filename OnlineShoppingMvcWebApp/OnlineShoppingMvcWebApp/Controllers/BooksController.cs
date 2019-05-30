@@ -8,22 +8,38 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
+using MvcBreadCrumbs;
 using OnlineShoppingMvcWebApp.Models;
 
 namespace OnlineShoppingMvcWebApp.Controllers
 {
+    [BreadCrumb]
     public class BooksController : Controller
     {
         private MyAppDbContext db = new MyAppDbContext();
 
         // GET: Books
-        public ActionResult Index()
+        public ActionResult IndexBooks()
         {
             return View(db.Book.ToList());
         }
 
         // GET: Books/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult DetailsBook(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = db.Book.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
+        }
+        public ActionResult DetailsForCustomer(int? id)
         {
             if (id == null)
             {
@@ -38,7 +54,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
         }
 
         // GET: Books/Create
-        public ActionResult Create()
+        public ActionResult CreateBook()
         {
             return View();
         }
@@ -48,7 +64,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookId,Title,Publisher,Year,CoverPage,ISBN,Author,Category,Price", Exclude="CoverPage")] Book book)
+        public ActionResult CreateBook([Bind(Include = "BookId,Title,Publisher,Year,CoverPage,ISBN,Author,Category,Price", Exclude="CoverPage")] Book book)
         {
 
             if (ModelState.IsValid)
@@ -60,16 +76,34 @@ namespace OnlineShoppingMvcWebApp.Controllers
                     poImgFile.SaveAs(Server.MapPath("~") + @"\" + path);
                     book.CoverPage = path;
 
-                db.Book.Add(book);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //Check book if exist
+                int count = (from x in db.Book
+                             where x.Title == book.Title
+                             where x.ISBN == book.ISBN
+                             select x).Count();
+
+                if (count == 0)
+                {
+                    db.Book.Add(book);
+                    db.SaveChanges();
+                    return RedirectToAction("IndexBooks");
+                }
+
+                else {
+
+                    ViewBag.errorMessage = "Book already exist. Please create new book";
+                    return View(book);
+
+                }
+               
+                
             }
 
             return View(book);
         }
 
         // GET: Books/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult EditBook(int? id)
         {
             if (id == null)
             {
@@ -88,7 +122,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookId,Title,Publisher,Year,ISBN,Author,Category,Price", Exclude = "CoverPage")] Book book)
+        public ActionResult EditBook([Bind(Include = "BookId,Title,Publisher,Year,ISBN,Author,Category,Price", Exclude = "CoverPage")] Book book)
         {
             HttpPostedFileBase poImgFile = Request.Files["CoverPage"];
             string path = @"\Images/" + poImgFile.FileName;
@@ -99,13 +133,13 @@ namespace OnlineShoppingMvcWebApp.Controllers
             {
                 db.Entry(book).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexBook");
             }
             return View(book);
         }
 
         // GET: Books/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult DeleteBook(int? id)
         {
             if (id == null)
             {
@@ -127,7 +161,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
             Book book = db.Book.Find(id);
             db.Book.Remove(book);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexBooks");
         }
 
         protected override void Dispose(bool disposing)
@@ -138,5 +172,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

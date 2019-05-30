@@ -6,10 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MvcBreadCrumbs;
 using OnlineShoppingMvcWebApp.Models;
 
 namespace OnlineShoppingMvcWebApp.Controllers
 {
+    [BreadCrumb]
     public class CustomersController : Controller
     {
         private MyAppDbContext db = new MyAppDbContext();
@@ -36,7 +38,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
             customer = db.Customer.Find(id);
             int adID = (from x in db.Customer
                         where x.registeredUserId == id
-                           select x.ShipAddress.AddressID).First();
+                           select x.ShipAddressID).First();
 
             var address = (from x in db.Address
                            where x.AddressID == adID
@@ -54,7 +56,11 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            return View();
+            Customer customer = new Customer()
+            {
+                role = "Customer"
+            };
+            return View(customer);
         }
 
         // POST: Customers/Create
@@ -62,7 +68,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "registeredUserId,userName,password,role,PhoneNo,Email")] Customer customer)
+        public ActionResult Create([Bind(Include = "registeredUserId,fullName,userName,password,role,PhoneNo,Email")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +101,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "registeredUserId,userName,password,role,PhoneNo,Email")] Customer customer)
+        public ActionResult Edit([Bind(Include = "registeredUserId,fullName,userName,password,role,PhoneNo,Email")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +110,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
                             where x.registeredUserId == customer.registeredUserId
                             select x.ShipAddress.AddressID).First();
 
-
+                customer.ShipAddress.AddressID = adID;
 
                 Address newAdd = new Address
                 {

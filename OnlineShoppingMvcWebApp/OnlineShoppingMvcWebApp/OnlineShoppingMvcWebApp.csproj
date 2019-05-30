@@ -85,6 +85,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcBreadCrumbs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcBreadCrumbs.0.69\lib\MvcBreadCrumbs.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -171,7 +174,6 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\OnlineShoppingController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
-    <Compile Include="Controllers\ShipmentAgentController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -208,6 +210,22 @@
     <Compile Include="Migrations\201905241733565_sixth.Designer.cs">
       <DependentUpon>201905241733565_sixth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905250917005_seven.cs" />
+    <Compile Include="Migrations\201905250917005_seven.Designer.cs">
+      <DependentUpon>201905250917005_seven.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905250935539_nine.cs" />
+    <Compile Include="Migrations\201905250935539_nine.Designer.cs">
+      <DependentUpon>201905250935539_nine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905251804051_eleven.cs" />
+    <Compile Include="Migrations\201905251804051_eleven.Designer.cs">
+      <DependentUpon>201905251804051_eleven.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300122041_latesttt.cs" />
+    <Compile Include="Migrations\201905300122041_latesttt.Designer.cs">
+      <DependentUpon>201905300122041_latesttt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -238,11 +256,11 @@
     <Content Include="Views\Admin\ViewStaff.cshtml" />
     <Content Include="Views\Admin\ViewBook.cshtml" />
     <Content Include="Views\Admin\ViewOrder.cshtml" />
-    <Content Include="Views\Books\Create.cshtml" />
-    <Content Include="Views\Books\Delete.cshtml" />
-    <Content Include="Views\Books\Details.cshtml" />
-    <Content Include="Views\Books\Edit.cshtml" />
-    <Content Include="Views\Books\Index.cshtml" />
+    <Content Include="Views\Books\CreateBook.cshtml" />
+    <Content Include="Views\Books\DeleteBook.cshtml" />
+    <Content Include="Views\Books\DetailsBook.cshtml" />
+    <Content Include="Views\Books\EditBook.cshtml" />
+    <Content Include="Views\Books\IndexBook.cshtml" />
     <Content Include="Views\Admin\CreateUser.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
@@ -259,6 +277,8 @@
     <Content Include="Views\ShoppingCart\OrderNow.cshtml" />
     <Content Include="Views\OnlineShopping\Index3.cshtml" />
     <Content Include="Views\Orders\OrderCustomer.cshtml" />
+    <Content Include="Views\Books\DetailsForCustomer.cshtml" />
+    <Content Include="Views\Orders\DetailsCustomer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -294,6 +314,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905241733565_sixth.resx">
       <DependentUpon>201905241733565_sixth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905250917005_seven.resx">
+      <DependentUpon>201905250917005_seven.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905250935539_nine.resx">
+      <DependentUpon>201905250935539_nine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251804051_eleven.resx">
+      <DependentUpon>201905251804051_eleven.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300122041_latesttt.resx">
+      <DependentUpon>201905300122041_latesttt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Shop Homepage - Start Bootstrap Template</title>
+    <title>IT BookStore - Online Shopping Website For Information and Technology Book</title>
 
 
     <!-- Custom styles for this template -->
@@ -50,12 +50,12 @@
                         {
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="@item.CoverPage" alt="@item.Title"></a>
+                                    <a href="#"><img class="card-img-top"  width="200" height="300"  src="@item.CoverPage" alt="@item.Title"></a>
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            <a href="~/Books/Details/@item.BookId">@item.Title</a>
+                                            <a href="~/Books/DetailsForCustomer/@item.BookId">@item.Title</a>
                                         </h4>
-                                        <h5>RM @item.Price</h5>
+                                        <h5><b>RM @item.Price</b></h5>
                                         <h6>Author : @item.Author</h6>
                                         <h6>ISBN   : @item.ISBN</h6>
                                         <h6>Publisher : @item.Publisher</h6>

@@ -10,7 +10,7 @@ namespace OnlineShoppingMvcWebApp.Controllers
 {
     public class AuthAuthController : Controller
     {
-              [AllowAnonymous]
+        [AllowAnonymous]
         // GET: AuthAuth
         public ActionResult Login()
         {
@@ -68,28 +68,35 @@ namespace OnlineShoppingMvcWebApp.Controllers
         {
             //access to db. get username and password
             MyAppDbContext db = new MyAppDbContext();
-
-            int count = (from x in db.RegisteredUser
-                         where x.userName == customer.userName
-                         where x.password == customer.password
-                         select x).Count();
-
-            //check whether acc already exist
-            if (count == 0)
+            if (ModelState.IsValid)
             {
-               ViewBag.errMsg = "Registration Successful. Please Login";
-                db.Address.Add(customer.ShipAddress);
-               db.RegisteredUser.Add(customer);
-               db.SaveChanges();
-                return RedirectToAction("Login", "AuthAuth");
+                int count = (from x in db.RegisteredUser
+                             where x.userName == customer.userName
+                             where x.password == customer.password
+                             select x).Count();
+
+                //check whether acc already exist
+                if (count == 0)
+                {
+                    ViewBag.errMsg = "Registration Successful. Please Login";
+                    db.Address.Add(customer.ShipAddress);
+                    db.RegisteredUser.Add(customer);
+                    db.SaveChanges();
+                    return RedirectToAction("Login", "AuthAuth");
+                }
+                else
+                {
+                    //check whether acc already exist
+                    ViewBag.errMsg = "This account already registered";
+                    return View(customer);
+
+                }
             }
             else
-            {      
-                //check whether acc already exist
-                ViewBag.errMsg = "This account already registered";
+            {
                 return View(customer);
-               
             }
+           
         }
 
         public ActionResult Logout()

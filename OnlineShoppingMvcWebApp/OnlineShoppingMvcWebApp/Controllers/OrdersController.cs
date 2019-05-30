@@ -6,14 +6,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MvcBreadCrumbs;
 using OnlineShoppingMvcWebApp.Models;
 using OnlineShoppingMvcWebApp.ViewModels;
 
 namespace OnlineShoppingMvcWebApp.Controllers
-{
+{       [BreadCrumb]
     public class OrdersController : Controller
     {
-
+        
         private string history = "OldCart";
         private MyAppDbContext db = new MyAppDbContext();
         static CustomerOrder vm = new CustomerOrder
@@ -38,8 +39,34 @@ namespace OnlineShoppingMvcWebApp.Controllers
 
             return View(result);
         }
-        
 
+        // GET: Orders/Details/5
+        public ActionResult DetailsCustomer(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = db.Order.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            Customer customer = (from o in db.Order
+                                 join c in db.Customer
+                                 on o.OrderCustomerid equals c.registeredUserId
+                                 select c).First();
+
+            Address address = (from c in db.Customer
+                               join a in db.Address
+                               on c.ShipAddressID equals a.AddressID
+                               select a).First();
+            order.Customer.ShipAddress = address;
+            order.Customer = customer;
+
+
+            return View(order);
+        }
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
@@ -52,11 +79,19 @@ namespace OnlineShoppingMvcWebApp.Controllers
             {
                 return HttpNotFound();
             }
+            Customer customer = (from o in db.Order
+                                join c in db.Customer
+                                on o.Customer.registeredUserId equals c.registeredUserId
+                                select c).First();
 
-            var item = (from x in db.Order
-                        where x.OrderId == id
-                        select x.Carts);
-            Session[history] = item;
+            Address address = (from c in db.Customer
+                                 join a in db.Address
+                                 on c.ShipAddressID equals a.AddressID
+                                 select a).First();
+            order.Customer.ShipAddress = address;
+            order.Customer = customer;
+
+
             return View(order);
         }
 
@@ -85,16 +120,32 @@ namespace OnlineShoppingMvcWebApp.Controllers
            
             if (ModelState.IsValid)
             {
-              var id = Int32.Parse(Request.Cookies["UserId"].Value);
+              var custid = Int32.Parse(Request.Cookies["UserId"].Value);
                 Customer cust = (from x in db.Customer
-                                 where x.registeredUserId == id
+                                 where x.registeredUserId == custid
                                  select x).Single();
                      order.Customer = cust;
                 List<Cart> IsCart = (List<Cart>)Session["Cart"];
-                order.Carts = IsCart;
+
+
+                order.OrderCustomerid = custid;
                 order.Date = DateTime.Now;
                 db.Order.Add(order);
                 db.SaveChanges();
+
+                for (int i = 0; i < IsCart.Count; i++)
+                {
+                    var book = db.Book.Find(IsCart[i].Book.BookId);
+                    if(book.BookId>0)
+                    { 
+                    IsCart[i].OrderID = order.OrderId;
+                        IsCart[i].BookID =book.BookId;
+
+                        db.Carts.Add(IsCart[i]);
+
+                        db.SaveChanges();
+                    }
+                }
                 Session["Cart"]=null;
                 return RedirectToAction("OrderCustomer/"+Request.Cookies["UserId"].Value);
             }

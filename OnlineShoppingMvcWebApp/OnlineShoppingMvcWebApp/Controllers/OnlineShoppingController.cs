@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcBreadCrumbs;
 using OnlineShoppingMvcWebApp.Models;
 
 namespace OnlineShoppingMvcWebApp.Controllers
 {
+    [BreadCrumb]
     public class OnlineShoppingController : Controller
     {
+        
         private MyAppDbContext db = new MyAppDbContext();
 
         [AllowAnonymous]
